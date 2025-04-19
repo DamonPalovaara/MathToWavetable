@@ -15,9 +15,6 @@ jobs:
         run: |
           cargo build --release
           ./target/release/wavetable
-      - name: Zip Rich-Nested-FM folder
-        run: |
-          zip -r Rich-Nested-FM.zip Rich-Nested-FM
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
