@@ -1,0 +1,26 @@
+name: Generate Wavetables
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build and run
+        run: |
+          cargo build --release
+          ./target/release/wavetable
+      - name: Zip Rich-Nested-FM folder
+        run: |
+          zip -r Rich-Nested-FM.zip Rich-Nested-FM
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Rich-Nested-FM
+          path: Rich-Nested-FM.zip
+
