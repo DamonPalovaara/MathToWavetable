@@ -7,13 +7,23 @@ fn main() {
     // Wavetables
     collection.push(Box::new(OneToTenMultiplier));
     collection.push(Box::new(OneMultiplier));
-    collection.push(Box::new(RichNestedFM3));
+    collection.push(Box::new(TwoMultiplier));
+    collection.push(Box::new(ThreeMultiplier));
+    collection.push(Box::new(FourMultiplier));
+    collection.push(Box::new(FiveMultiplier));
+    collection.push(Box::new(SixMultiplier));
+    collection.push(Box::new(SevenMultiplier));
+    collection.push(Box::new(EightMultiplier));
+    collection.push(Box::new(NineMultiplier));
+    collection.push(Box::new(TenMultiplier));
+    collection.push(Box::new(ModulateDelay));
     collection.push(Box::new(OneToTenMultiplierNoDelay));
     collection.push(Box::new(ThreeOverTwo));
     collection.push(Box::new(ThreeOverTwoNoDelay));
     collection.push(Box::new(NineOverEight));
     collection.push(Box::new(TwentyThreeOverThirteen));
-    collection.push(Box::new(TwoMultiplier));
+    collection.push(Box::new(SevenOverThree));
+    collection.push(Box::new(FiveOverFour));
     // Generate
     collection.generate_f32_wt(2048, 256);
     collection.generate_f32_wt(4096, 512);
@@ -21,8 +31,8 @@ fn main() {
     collection.generate_serum(2048, 64);
 }
 
-struct RichNestedFM3;
-impl WaveTable for RichNestedFM3 {
+struct ModulateDelay;
+impl WaveTable for ModulateDelay {
     fn sample(&self, cycle: f64, phase: f64) -> f64 {
         let m = 2.;
         let a = 0.75;
@@ -33,7 +43,7 @@ impl WaveTable for RichNestedFM3 {
     }
 
     fn name(&self) -> String {
-        "rich-nested-fm-3".into()
+        "modulate-delay".into()
     }
 }
 
@@ -82,6 +92,126 @@ impl WaveTable for OneMultiplier {
 
     fn name(&self) -> String {
         "one-multiplier".into()
+    }
+}
+struct ThreeMultiplier;
+impl WaveTable for ThreeMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 3.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "three-multiplier".into()
+    }
+}
+struct FourMultiplier;
+impl WaveTable for FourMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 4.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "four-multiplier".into()
+    }
+}
+struct FiveMultiplier;
+impl WaveTable for FiveMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 5.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "five-multiplier".into()
+    }
+}
+struct SixMultiplier;
+impl WaveTable for SixMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 6.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "six-multiplier".into()
+    }
+}
+struct SevenMultiplier;
+impl WaveTable for SevenMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 7.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "seven-multiplier".into()
+    }
+}
+struct EightMultiplier;
+impl WaveTable for EightMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 8.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "eight-multiplier".into()
+    }
+}
+struct NineMultiplier;
+impl WaveTable for NineMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 9.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "nine-multiplier".into()
+    }
+}
+struct TenMultiplier;
+impl WaveTable for TenMultiplier {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = cycle * 3.;
+        let t = 2.2;
+        let m = 10.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "ten-multiplier".into()
     }
 }
 
@@ -162,6 +292,36 @@ impl WaveTable for TwentyThreeOverThirteen {
 
     fn name(&self) -> String {
         "twenty-three-over-thirteen".into()
+    }
+}
+struct SevenOverThree;
+impl WaveTable for SevenOverThree {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = 3. * cycle;
+        let t = PI / 8.;
+        let m = 7. / 3.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "seven-over-three".into()
+    }
+}
+struct FiveOverFour;
+impl WaveTable for FiveOverFour {
+    fn sample(&self, cycle: f64, phase: f64) -> f64 {
+        let x = phase * 2. * PI;
+        let a = 3. * cycle;
+        let t = 0.;
+        let m = 5. / 4.;
+
+        fractal_fm(x, a, t, m)
+    }
+
+    fn name(&self) -> String {
+        "five-over-four".into()
     }
 }
 
