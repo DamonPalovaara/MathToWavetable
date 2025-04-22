@@ -14,10 +14,15 @@ jobs:
       - name: Build and run
         run: |
           cargo build --release
-          ./target/release/wavetable
-      - name: Upload artifact
+          ./target/release/fractal-fm
+      - name: Upload WT
         uses: actions/upload-artifact@v4
         with:
-          name: Rich-Nested-FM
-          path: Rich-Nested-FM
+          name: Fractal-FM WT
+          path: Fractal-FM/wt
+      - name: Upload Serum
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fractal-FM Serum
+          path: Fractal-FM/serum
 
