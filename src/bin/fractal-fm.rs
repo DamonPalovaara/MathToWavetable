@@ -218,7 +218,7 @@ impl WaveTable for TenMultiplier {
 struct ThreeOverTwo;
 impl WaveTable for ThreeOverTwo {
     fn sample(&self, cycle: f64, phase: f64) -> f64 {
-        let x = phase * 2. * PI;
+        let x = phase * 4. * PI;
         let a = 3. * cycle;
         let t = 0.75;
         let m = 1.5;
