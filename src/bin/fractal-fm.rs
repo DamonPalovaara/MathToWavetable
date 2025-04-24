@@ -327,7 +327,7 @@ impl WaveTable for FiveOverFour {
 
 fn fractal_fm(x: f64, a: f64, t: f64, m: f64) -> f64 {
     let iterations = 4;
-    let mut y = m.powi(4) * (x - 4. * t);
+    let mut y = m.powi(iterations) * (x - (iterations as f64) * t);
 
     for i in 0..iterations {
         let idx = iterations - 1 - i;
